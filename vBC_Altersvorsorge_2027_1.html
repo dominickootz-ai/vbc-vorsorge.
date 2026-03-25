@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>vBC Altersvorsorge 2027 – von Buddenbrock</title>
+<style>
+:root{
+  --navy:#0D1B3E;--navy2:#1a2f5e;--navy3:#0a1530;--navy4:#243660;
+  --gold:#C9A84C;--gold2:#e8c96a;--gold3:#f5e4b0;--goldbg:#fdf9ed;
+  --bg:#f4f6fb;--bg2:#eef1f8;--text:#1a1a2e;--muted:#6878a8;
+  --border:#d5dbed;--white:#ffffff;
+  --teal:#1D9E75;--teal2:#E1F5EE;--teal3:#9FE1CB;
+  --amber:#BA7517;--amber2:#FAEEDA;--amber3:#FAC775;
+  --red:#A32D2D;--red2:#FCEBEB;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:.88rem;}
+
+/* HEADER */
+header{background:var(--navy3);padding:0 32px;display:flex;align-items:center;position:sticky;top:0;z-index:200;box-shadow:0 3px 16px rgba(0,0,0,.4);min-height:64px;}
+.logo-wrap{display:flex;align-items:center;gap:16px;padding:10px 0;}
+.logo-wrap img{height:42px;width:auto;display:block;}
+.logo-divider{width:1px;height:36px;background:rgba(201,168,76,.3);}
+.logo-text h1{font-size:.9rem;font-weight:800;color:var(--gold2);letter-spacing:.06em;text-transform:uppercase;}
+.logo-text p{font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.05em;margin-top:2px;}
+.header-gap{flex:1;}
+.stufe-widget{display:flex;align-items:center;gap:10px;}
+.slabel{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);white-space:nowrap;}
+.sbtn-group{display:flex;gap:3px;}
+.sbtn{background:transparent;border:1px solid rgba(201,168,76,.3);color:rgba(255,255,255,.5);padding:5px 12px;border-radius:4px;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .15s;font-family:inherit;}
+.sbtn:hover{border-color:var(--gold);color:var(--gold);}
+.sbtn.active{background:var(--gold);border-color:var(--gold);color:var(--navy3);}
+.sinput-wrap{display:flex;align-items:center;gap:5px;}
+.slabel2{font-size:.63rem;color:rgba(255,255,255,.3);white-space:nowrap;}
+#stufe-input{width:54px;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.3);border-radius:4px;color:var(--gold2);padding:5px 7px;font-size:.78rem;font-family:inherit;text-align:center;}
+#stufe-input:focus{outline:none;border-color:var(--gold);}
+
+/* NAV */
+nav{background:var(--navy2);padding:0 32px;display:flex;gap:0;border-bottom:2px solid var(--navy3);}
+nav button{background:none;border:none;color:rgba(255,255,255,.45);padding:13px 20px;font-size:.78rem;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;font-family:inherit;letter-spacing:.04em;transition:all .15s;}
+nav button:hover{color:rgba(255,255,255,.8);}
+nav button.active{color:var(--gold2);border-bottom-color:var(--gold);}
+
+/* CONTENT */
+.content{padding:28px 32px;max-width:1120px;margin:0 auto;}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+
+/* SECTION */
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.sh h2{font-size:1rem;font-weight:800;color:var(--navy);letter-spacing:.04em;text-transform:uppercase;}
+.badge{font-size:.63rem;font-weight:800;padding:3px 10px;border-radius:10px;letter-spacing:.05em;text-transform:uppercase;}
+.badge.navy{background:var(--navy);color:var(--gold2);}
+.badge.teal{background:var(--teal);color:#fff;}
+.badge.gold{background:var(--gold);color:var(--navy3);}
+.badge.amber{background:var(--amber);color:#fff;}
+
+/* CARDS */
+.card{background:var(--white);border-radius:8px;border:1px solid var(--border);padding:18px 22px;margin-bottom:14px;}
+.card.gold-left{border-left:4px solid var(--gold);}
+.card.teal-left{border-left:4px solid var(--teal);}
+.card.navy-left{border-left:4px solid var(--navy);}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;}
+
+/* STRATEGIE */
+.strat{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px;cursor:pointer;transition:all .15s;position:relative;}
+.strat:hover{border-color:var(--navy2);box-shadow:0 2px 8px rgba(13,27,62,.08);}
+.strat.on{border:2px solid var(--teal);background:var(--teal2);}
+.sdot{position:absolute;top:12px;right:12px;width:8px;height:8px;border-radius:50%;background:var(--border);}
+.strat.on .sdot{background:var(--teal);}
+.sn{font-size:.82rem;font-weight:800;color:var(--navy);margin-bottom:3px;letter-spacing:.02em;}
+.strat.on .sn{color:var(--teal);}
+.sd{font-size:.72rem;color:var(--muted);line-height:1.5;margin-bottom:8px;}
+.sr{font-size:.68rem;font-weight:800;color:var(--teal);background:var(--teal2);display:inline-block;padding:2px 9px;border-radius:10px;border:1px solid var(--teal3);}
+.strat.on .sr{background:#fff;}
+
+/* GARANTIE */
+.gt{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px;cursor:pointer;transition:all .15s;}
+.gt:hover{border-color:var(--navy2);}
+.gt.on{border:2px solid var(--gold);background:var(--goldbg);}
+.gt-name{font-size:.82rem;font-weight:800;color:var(--navy);margin-bottom:4px;}
+.gt.on .gt-name{color:var(--amber);}
+.gt-desc{font-size:.72rem;color:var(--muted);line-height:1.45;}
+
+/* SLIDER */
+.slider-row{display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+.slider-row label{font-size:.72rem;font-weight:800;color:var(--navy);min-width:155px;text-transform:uppercase;letter-spacing:.04em;}
+.slider-row input[type=range]{flex:1;accent-color:var(--teal);}
+.sval{font-size:.82rem;font-weight:800;min-width:76px;text-align:right;color:var(--navy);}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0;}
+.met{background:var(--bg2);border-radius:6px;padding:12px 14px;border:1px solid var(--border);}
+.ml{font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:5px;}
+.mv{font-size:1.25rem;font-weight:900;color:var(--navy);}
+.mv.t{color:var(--teal);}.mv.g{color:var(--amber);}.mv.n{color:var(--navy);}
+
+/* BAR */
+.bar-labels{display:flex;justify-content:space-between;font-size:.67rem;color:var(--muted);margin-bottom:4px;font-weight:700;}
+.bar-bg{height:7px;border-radius:4px;background:var(--bg2);border:1px solid var(--border);overflow:hidden;margin-bottom:10px;}
+.bar-fg{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--teal),var(--teal3));transition:width .35s;}
+
+/* HINWEIS */
+.hinweis{font-size:.75rem;color:var(--text);border-left:3px solid;padding:9px 13px;border-radius:0 6px 6px 0;line-height:1.6;margin-top:8px;}
+.hinweis.teal{background:var(--teal2);border-color:var(--teal);}
+.hinweis.gold{background:var(--goldbg);border-color:var(--gold);}
+.hinweis.warn{background:var(--amber2);border-color:var(--amber);color:#7a5200;}
+
+/* TABLES */
+.tw{overflow-x:auto;}
+table.dt{width:100%;border-collapse:collapse;font-size:.78rem;}
+table.dt thead tr{background:var(--navy);}
+table.dt thead th{padding:10px 12px;text-align:left;color:var(--gold2);font-weight:700;font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;}
+table.dt tbody tr{border-bottom:1px solid var(--bg2);}
+table.dt tbody tr:hover{background:var(--bg2);}
+table.dt tbody tr:nth-child(even){background:var(--bg);}
+table.dt tbody tr:nth-child(even):hover{background:var(--bg2);}
+table.dt td{padding:9px 12px;vertical-align:middle;}
+table.dt td:first-child{font-weight:700;color:var(--navy);}
+.prov-val{font-weight:800;color:var(--teal);}
+.prov-val-edit{font-weight:800;color:var(--amber);background:var(--amber2);padding:1px 6px;border-radius:4px;cursor:default;}
+
+/* PILLS */
+.pill{display:inline-block;font-size:.62rem;padding:2px 8px;border-radius:9px;font-weight:800;letter-spacing:.04em;}
+.pill.g{background:var(--teal2);color:var(--teal);border:1px solid var(--teal3);}
+.pill.a{background:var(--amber2);color:var(--amber);border:1px solid var(--amber3);}
+.pill.b{background:#E6F1FB;color:#185FA5;border:1px solid #B5D4F4;}
+.pill.n{background:var(--navy);color:var(--gold2);}
+.check{color:var(--teal);font-weight:900;font-size:.95rem;}
+.cross{color:var(--red);font-weight:900;}
+.dash{color:var(--muted);}
+
+/* LAYER BOXES */
+.layer{border-radius:8px;padding:14px 16px;border:1px solid;}
+.layer.tl{background:var(--teal2);border-color:var(--teal3);}
+.layer.al{background:var(--amber2);border-color:var(--amber3);}
+.lt{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px;}
+.layer.tl .lt{color:var(--teal);}.layer.al .lt{color:var(--amber);}
+.layer ul{list-style:none;}
+.layer ul li{font-size:.76rem;color:var(--text);padding:3px 0 3px 13px;position:relative;line-height:1.5;}
+.layer ul li::before{content:"›";position:absolute;left:0;color:var(--muted);}
+
+/* FLOW */
+.flow{display:flex;gap:0;margin:14px 0;}
+.fs{flex:1;padding:10px 6px;text-align:center;position:relative;}
+.fs:not(:last-child)::after{content:"›";position:absolute;right:-4px;top:42%;color:var(--muted);font-size:1.3rem;}
+.fn{width:26px;height:26px;border-radius:50%;background:var(--navy);color:var(--gold2);font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;}
+.ft{font-size:.72rem;color:var(--muted);line-height:1.4;font-weight:600;}
+
+/* ZG */
+.zg{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:16px;border-left:4px solid var(--gold);}
+.zg-title{font-size:.82rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.zg-desc{font-size:.74rem;color:var(--muted);line-height:1.55;margin-bottom:8px;}
+
+/* QA */
+.qa-list{display:flex;flex-direction:column;gap:8px;}
+.qa{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 16px;border-left:3px solid var(--navy);}
+.q{font-size:.8rem;font-weight:800;color:var(--navy);margin-bottom:5px;}
+.a{font-size:.77rem;color:var(--muted);line-height:1.6;}
+
+/* DIVIDER */
+hr.div{border:none;border-top:1px solid var(--bg2);margin:20px 0;}
+
+/* PROV FORMULA BOX */
+.formula-box{background:var(--navy);border-radius:8px;padding:16px 20px;margin-bottom:14px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.formula-box .fl{font-size:.72rem;color:rgba(255,255,255,.5);font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
+.formula-box .fv{font-size:1.1rem;font-weight:900;color:var(--gold2);}
+.formula-box .fx{font-size:.9rem;color:rgba(255,255,255,.4);padding:0 6px;}
+
+/* CTA */
+.cta-row{display:flex;gap:10px;margin-top:18px;}
+.btn-p{background:var(--navy);color:var(--gold2);border:1px solid var(--navy);border-radius:6px;padding:10px 20px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:all .15s;}
+.btn-p:hover{background:var(--navy2);}
+.btn-s{background:transparent;color:var(--navy);border:1px solid var(--border);border-radius:6px;padding:10px 20px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:all .15s;}
+.btn-s:hover{background:var(--bg2);}
+.btn-gold{background:var(--gold);color:var(--navy3);border:1px solid var(--gold);border-radius:6px;padding:10px 20px;font-size:.78rem;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.04em;transition:all .15s;}
+.btn-gold:hover{background:var(--gold2);}
+
+footer{background:var(--navy3);color:rgba(255,255,255,.25);text-align:center;padding:18px;font-size:.68rem;letter-spacing:.06em;margin-top:40px;}
+footer span{color:var(--gold2);}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--navy2);border-radius:4px;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-wrap">
+    <img src="data:image/jpeg;base64,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" alt="von Buddenbrock" style="height:46px;width:auto;display:block;background:#fff;border-radius:4px;padding:3px 8px;">
+    <div class="logo-divider"></div>
+    <div class="logo-text">
+      <h1>Altersvorsorge 2027</h1>
+      <p>Neues Fördermodell &nbsp;·&nbsp; Vermögensverwaltung als Investmentkern &nbsp;·&nbsp; Stand März 2026</p>
+    </div>
+  </div>
+  <div class="header-gap"></div>
+  <div class="stufe-widget">
+    <span class="slabel">Provisionsstufe</span>
+    <div class="sbtn-group">
+      <button class="sbtn" onclick="setStufe(0.7,this)">70 %</button>
+      <button class="sbtn" onclick="setStufe(0.8,this)">80 %</button>
+      <button class="sbtn" onclick="setStufe(0.9,this)">90 %</button>
+      <button class="sbtn active" onclick="setStufe(1.0,this)">100 %</button>
+    </div>
+    <div class="sinput-wrap">
+      <span class="slabel2">Individuell</span>
+      <input type="number" id="stufe-input" min="1" max="200" value="100" step="1"
+             onchange="setStufeCustom(this.value)" oninput="setStufeCustom(this.value)">
+      <span style="color:var(--gold2);font-size:.75rem">%</span>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <button class="active" onclick="showTab('rechner',this)">Förderrechner</button>
+  <button onclick="showTab('produkt',this)">Produktstruktur</button>
+  <button onclick="showTab('vergleich',this)">Variantenvergleich</button>
+  <button onclick="showTab('provision',this)">Provisionsmodell</button>
+  <button onclick="showTab('beratung',this)">Beratungsführung</button>
+</nav>
+
+<div class="content">
+
+<!-- ═══ TAB: FÖRDERRECHNER ═══ -->
+<div id="rechner" class="tab-panel active">
+  <div class="sh"><h2>Förderrechner</h2><span class="badge navy">Staatliche Zulage 2027</span></div>
+
+  <div class="sh" style="margin-top:0;margin-bottom:10px;"><span style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">Investmentstrategie wählen</span></div>
+  <div class="g4" id="stratGrid">
+    <div class="strat" data-i="0" onclick="selStrat(this)">
+      <div class="sdot"></div>
+      <div class="sn">Konservativ</div>
+      <div class="sd">Anleihen, Geldmarkt, geringe Volatilität.</div>
+      <span class="sr">Ziel: 3,5 % p.a.</span>
+    </div>
+    <div class="strat on" data-i="1" onclick="selStrat(this)">
+      <div class="sdot"></div>
+      <div class="sn">Ausgewogen</div>
+      <div class="sd">Breite Diversifikation, Rendite &amp; Stabilität.</div>
+      <span class="sr">Ziel: 5,5 % p.a.</span>
+    </div>
+    <div class="strat" data-i="2" onclick="selStrat(this)">
+      <div class="sdot"></div>
+      <div class="sn">Wachstum</div>
+      <div class="sd">Aktienorientiert, langfristiger Aufbau.</div>
+      <span class="sr">Ziel: 7,0 % p.a.</span>
+    </div>
+    <div class="strat" data-i="3" onclick="selStrat(this)">
+      <div class="sdot"></div>
+      <div class="sn">Dynamisch</div>
+      <div class="sd">Global, opportunistisch, maximales Potenzial.</div>
+      <span class="sr">Ziel: 8,5 % p.a.</span>
+    </div>
+  </div>
+
+  <div class="sh" style="margin-bottom:10px;"><span style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">Garantievariante</span></div>
+  <div class="g3">
+    <div class="gt" data-g="0" onclick="selG(this)">
+      <div class="gt-name">Ohne Garantie</div>
+      <div class="gt-desc">Volle Investitionsquote. Höchstes Renditepotenzial. Ideal für die Vermögensverwaltung als Kern.</div>
+    </div>
+    <div class="gt on" data-g="1" onclick="selG(this)">
+      <div class="gt-name">80 %-Garantie</div>
+      <div class="gt-desc">80 % der Einzahlungen + Zulagen garantiert. Hohe Investitionsquote. Bester Kompromiss.</div>
+    </div>
+    <div class="gt" data-g="2" onclick="selG(this)">
+      <div class="gt-name">100 %-Garantie</div>
+      <div class="gt-desc">Alle Einzahlungen garantiert. Renditepotenzial durch Absicherungskosten eingeschränkt.</div>
+    </div>
+  </div>
+  <div id="gNote" class="hinweis gold" style="margin-bottom:14px;"></div>
+
+  <div class="card teal-left">
+    <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px;">Parameter</div>
+    <div class="slider-row">
+      <label>Eigenbeitrag / Monat</label>
+      <input type="range" id="sb" min="10" max="150" value="75" step="5" oninput="calc()">
+      <span class="sval" id="so">75 €</span>
+    </div>
+    <div class="slider-row">
+      <label>Anzahl Kinder</label>
+      <input type="range" id="kb" min="0" max="5" value="1" step="1" oninput="calc()">
+      <span class="sval" id="ko">1</span>
+    </div>
+    <div class="slider-row">
+      <label>Laufzeit</label>
+      <input type="range" id="lb" min="5" max="42" value="25" step="1" oninput="calc()">
+      <span class="sval" id="lo">25 Jahre</span>
+    </div>
+    <div class="metrics">
+      <div class="met"><div class="ml">Eigenbeitrag / Jahr</div><div class="mv n" id="m1">900 €</div></div>
+      <div class="met"><div class="ml">Staatliche Zulage / Jahr</div><div class="mv t" id="m2">—</div></div>
+      <div class="met"><div class="ml">Gesamteinlage / Jahr</div><div class="mv n" id="m3">—</div></div>
+    </div>
+    <div class="metrics" style="margin-top:0;">
+      <div class="met"><div class="ml">Förderquote</div><div class="mv t" id="m4">—</div></div>
+      <div class="met"><div class="ml">Gesamtkapital (geschätzt)</div><div class="mv g" id="m5">—</div></div>
+      <div class="met"><div class="ml">davon Zinseszins</div><div class="mv g" id="m6">—</div></div>
+    </div>
+    <div class="bar-labels"><span>Eigenbeitrag</span><span id="barPct">Staatliche Förderung</span></div>
+    <div class="bar-bg"><div class="bar-fg" id="barFg" style="width:55%"></div></div>
+    <div id="calcNote" class="hinweis teal"></div>
+  </div>
+
+  <div class="sh" style="margin-top:20px;"><span style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">Förderstruktur im Überblick</span></div>
+  <div class="tw">
+    <table class="dt">
+      <thead><tr>
+        <th>Monatlicher Eigenbeitrag</th>
+        <th>Jahresbeitrag</th>
+        <th>Staatl. Grundzulage / Jahr</th>
+        <th>Kinderzulage (je Kind)</th>
+        <th>Förderquote (ohne Kinder)</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>10 – 30 €</td><td>120 – 360 €</td><td>60 – 180 €</td><td>300 €</td><td>50 %</td></tr>
+        <tr><td>31 – 75 €</td><td>372 – 900 €</td><td>183 – 270 €</td><td>300 €</td><td>25 – 33 %</td></tr>
+        <tr><td>76 – 150 €</td><td>912 – 1.800 €</td><td>273 – 360 €</td><td>300 €</td><td>20 – 25 %</td></tr>
+        <tr style="background:#e8f8f2;font-weight:800;"><td>150 € (Maximum)</td><td>1.800 €</td><td>360 €</td><td>300 €</td><td>20 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="hinweis teal" style="margin-top:10px;">Maximale Gesamtförderung: 360 € Grundzulage + 300 € je Kind. Bei 2 Kindern und 150 €/Monat: 960 € staatliche Förderung auf 1.800 € Eigenbeitrag = 35 % Förderquote.</div>
+</div>
+
+<!-- ═══ TAB: PRODUKTSTRUKTUR ═══ -->
+<div id="produkt" class="tab-panel">
+  <div class="sh"><h2>Produktstruktur</h2><span class="badge navy">vBC Altersvorsorgedepot 2027</span></div>
+
+  <div class="g2">
+    <div class="layer tl">
+      <div class="lt">Investmentkern: Vermögensverwaltung vBC</div>
+      <ul>
+        <li>Professionelles Portfoliomanagement</li>
+        <li>4 Risikostrategien: Konservativ bis Dynamisch</li>
+        <li>Aktives Rebalancing &amp; Monitoring</li>
+        <li>ETF- und fondsbasiert, kosteneffizient</li>
+        <li>Transparentes Reporting für Kunden</li>
+        <li>Kostendeckelung (Standarddepot gesetzl.)</li>
+        <li>Volle Investitionsquote bei Variante ohne Garantie</li>
+      </ul>
+    </div>
+    <div class="layer al">
+      <div class="lt">Förderrahmen: Neues Altersvorsorgedepot 2027</div>
+      <ul>
+        <li>Staatliche Zulage automatisch beantragt</li>
+        <li>Kinderzulage 300 € / Kind / Jahr</li>
+        <li>Erstmals: Selbstständige zugelassen</li>
+        <li>3 Garantievarianten: 0 %, 80 %, 100 %</li>
+        <li>Wechsel aus Altvertrag ohne Förderrückzahlung</li>
+        <li>Frühstartrente für Junge (angekündigt)</li>
+        <li>Gültig ab Januar 2027</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="div">
+  <div class="sh"><span style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">Die drei Garantievarianten</span></div>
+  <div class="tw">
+    <table class="dt">
+      <thead><tr>
+        <th>Merkmal</th>
+        <th>Ohne Garantie</th>
+        <th>80 %-Garantie</th>
+        <th>100 %-Garantie</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Beitragsgarantie</td><td>–</td><td>80 % der Einzahlungen inkl. Zulagen</td><td>100 % der Einzahlungen</td></tr>
+        <tr><td>Investitionsquote</td><td>100 %</td><td>ca. 85–95 %</td><td>ca. 60–75 %</td></tr>
+        <tr><td>Renditepotenzial</td><td><span class="pill g">Maximal</span></td><td><span class="pill g">Hoch</span></td><td><span class="pill b">Moderat</span></td></tr>
+        <tr><td>vBC VV als Vollkern</td><td><span class="check">✓</span> vollständig</td><td><span class="check">✓</span> überwiegend</td><td>eingeschränkt</td></tr>
+        <tr><td>Empfehlung vBC</td><td><span class="pill n">Flagship</span></td><td><span class="pill a">Alternative</span></td><td>auf Anfrage</td></tr>
+        <tr><td>Zielgruppe</td><td>Lange Laufzeit, renditeorien.</td><td>Rendite + Sicherheitsbedarf</td><td>Ausgeprägt sicherheitsorien.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="hinweis teal" style="margin-top:10px;">Das Altersvorsorgedepot ohne Garantie ist der natürliche Kern für die Vermögensverwaltung. Hier arbeitet die volle Investitionsquote – und damit das gesamte Kapital inkl. Zulagen – für den Kunden.</div>
+</div>
+
+<!-- ═══ TAB: VARIANTENVERGLEICH ═══ -->
+<div id="vergleich" class="tab-panel">
+  <div class="sh"><h2>Variantenvergleich</h2><span class="badge navy">Strategien &amp; Einwandbehandlung</span></div>
+
+  <div class="tw">
+    <table class="dt">
+      <thead><tr>
+        <th>Strategie</th>
+        <th>Zielrendite</th>
+        <th>Aktienquote</th>
+        <th>Schwankungsbreite</th>
+        <th>Laufzeit-Empfehlung</th>
+        <th>Primäre Zielgruppe</th>
+        <th>Garantie-Empfehlung</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>Konservativ</td>
+          <td>3,5 % p.a.</td><td>20–30 %</td><td>Gering</td><td>ab 5 Jahre</td>
+          <td>Sicherheitsorient., kurze Laufzeit</td>
+          <td><span class="pill b">80 % / 100 %</span></td>
+        </tr>
+        <tr>
+          <td>Ausgewogen</td>
+          <td>5,5 % p.a.</td><td>50–60 %</td><td>Mittel</td><td>ab 10 Jahre</td>
+          <td>Breite Zielgruppe, Standard</td>
+          <td><span class="pill a">80 % / ohne</span></td>
+        </tr>
+        <tr>
+          <td>Wachstum</td>
+          <td>7,0 % p.a.</td><td>70–80 %</td><td>Erhöht</td><td>ab 15 Jahre</td>
+          <td>Familien, mittleres Alter</td>
+          <td><span class="pill g">Ohne Garantie</span></td>
+        </tr>
+        <tr>
+          <td>Dynamisch</td>
+          <td>8,5 % p.a.</td><td>90–100 %</td><td>Hoch</td><td>ab 20 Jahre</td>
+          <td>Berufseinsteiger, U35, Selbstständige</td>
+          <td><span class="pill g">Ohne Garantie</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="div">
+  <div class="sh"><span style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">Häufige Einwände – und die Antwort</span></div>
+  <div class="qa-list">
+    <div class="qa">
+      <div class="q">„Ich habe noch meinen alten Riester-Vertrag."</div>
+      <div class="a">Bestandsschutz greift – bisherige Förderung muss nicht zurückgezahlt werden. Wir analysieren kostenlos, ob ein Wechsel sinnvoll ist. Oft lohnt es sich, gerade bei älteren, renditeschwachen Verträgen.</div>
+    </div>
+    <div class="qa">
+      <div class="q">„Ich bin selbstständig – das gilt doch nicht für mich."</div>
+      <div class="a">Ab 2027 erstmals auch für Selbstständige zugänglich. Das ist neu und ein echter Vorteil gegenüber allen bisherigen Förderangeboten. Gerade hier kombiniert sich die Förderung ideal mit privater Altersvorsorge.</div>
+    </div>
+    <div class="qa">
+      <div class="q">„150 € im Monat reichen doch nicht für die Rente."</div>
+      <div class="a">Richtig – und genau das ist der Punkt. Die neue Vorsorge deckelt den Vorsorgebedarf nicht ab. Sie schafft Bewusstsein und öffnet das Gespräch über bAV, private Vorsorge und Absicherung. Das ist unser Kerngeschäft.</div>
+    </div>
+    <div class="qa">
+      <div class="q">„Ohne Garantie – das ist mir zu riskant."</div>
+      <div class="a">Verständlich. Dann ist die 80 %-Garantie-Variante die richtige Wahl: hohe Investitionsquote, solide Absicherung. Die 100 %-Garantie ist bei ausgeprägtem Sicherheitsbedarf verfügbar – allerdings mit eingeschränktem Renditepotenzial.</div>
+    </div>
+    <div class="qa">
+      <div class="q">„Was unterscheidet Sie von einer Bank oder einem Direktanbieter?"</div>
+      <div class="a">Wir bringen die Vermögensverwaltung als professionellen Investmentkern – kein Standardprodukt, kein passiver Index-ETF-Einheitsbrei. Und: wir begleiten den gesamten Vorsorgebedarf, nicht nur ein Produkt. Das ist der Unterschied zwischen Produktverkauf und echter Beratung.</div>
+    </div>
+    <div class="qa">
+      <div class="q">„Ich muss mir das noch überlegen."</div>
+      <div class="a">Natürlich. Die Förderanalyse ist kostenlos und unverbindlich – kein Commitment nötig. Wir zeigen Ihnen genau, welche Variante zu Ihrer Situation passt und wie viel Förderung Sie sich entgehen lassen, solange das Depot nicht läuft.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TAB: PROVISIONSMODELL ═══ -->
+<div id="provision" class="tab-panel">
+  <div class="sh"><h2>Provisionsmodell</h2><span class="badge gold">Vertriebliche Kennzahlen</span></div>
+
+  <div class="formula-box">
+    <div><div class="fl">Provisionsbasis</div><div class="fv" id="fProvBasis">—</div></div>
+    <div class="fx">×</div>
+    <div><div class="fl">Jahresbeitrag (Eigen + Zulage)</div><div class="fv" id="fJahres">—</div></div>
+    <div class="fx">=</div>
+    <div><div class="fl">Abschlussprovision (100 %)</div><div class="fv" id="fAP">—</div></div>
+    <div class="fx">→</div>
+    <div><div class="fl">Ihre Provision (Stufe: <span id="fStufe">100 %</span>)</div><div class="fv" id="fMeinAP">—</div></div>
+  </div>
+  <div class="hinweis gold" style="margin-bottom:16px;">Die Provision ist bewusst überschaubar gehalten – das ist zu erwarten und einzuplanen. Der strategische Hebel liegt im Türöffner-Effekt: kostenlose Förderanalyse → Vertrauen → Übergang in bAV, bKV, private Vorsorge.</div>
+
+  <div class="sh" style="margin-bottom:10px;"><span style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">Provisionstabelle nach Eigenbeitrag</span></div>
+  <div class="slider-row" style="margin-bottom:14px;">
+    <label style="min-width:155px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--navy);">Provisionsbasis</label>
+    <input type="range" id="pb" min="1" max="10" value="3" step="0.5" oninput="calcProv()" style="flex:1;accent-color:var(--teal);">
+    <span class="sval" id="pbOut" style="color:var(--amber);">3,0 %</span>
+  </div>
+  <div class="tw">
+    <table class="dt" id="provTable">
+      <thead><tr>
+        <th>Eigenbeitrag / Monat</th>
+        <th>Jahresbeitrag</th>
+        <th>+ Kinderzulage (1 Kind)</th>
+        <th>Gesamtbeitrag</th>
+        <th>AP 100 % (Basis)</th>
+        <th id="thStufe">Ihre Provision</th>
+      </tr></thead>
+      <tbody id="provBody"></tbody>
+    </table>
+  </div>
+  <div class="hinweis warn" style="margin-top:10px;">Hinweis: Die Provisionsbasis ist ein Platzhalter – bitte mit tatsächlichen Konditionenvereinbarungen abgleichen. Der Schieberegler dient der internen Kalkulation.</div>
+
+  <hr class="div">
+  <div class="sh"><span style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">Der echte Hebel: Türöffner-Rechnung</span></div>
+  <div class="g3">
+    <div class="card navy-left">
+      <div class="ml" style="margin-bottom:6px;">Neue Vorsorge (direkt)</div>
+      <div style="font-size:1.1rem;font-weight:900;color:var(--muted);">überschaubar</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5;">Provision auf ~1.800 € Jahresbeitrag. Solider Einstieg, kein Hauptumsatzträger.</div>
+    </div>
+    <div class="card gold-left">
+      <div class="ml" style="margin-bottom:6px;">bAV-Abschluss (Folgeberatung)</div>
+      <div style="font-size:1.1rem;font-weight:900;color:var(--amber);">Kerngeschäft</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5;">Betriebliche Altersvorsorge mit deutlich höheren Beiträgen und Provisionen. Natürlicher Übergang aus dem Erstgespräch.</div>
+    </div>
+    <div class="card teal-left">
+      <div class="ml" style="margin-bottom:6px;">Private Vorsorge + Absicherung</div>
+      <div style="font-size:1.1rem;font-weight:900;color:var(--teal);">Vollberatung</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5;">Einkommenssicherung, BU, private AV. Der Vorsorgebedarf übersteigt 1.800 € Jahresbeitrag bei nahezu jeder Zielgruppe.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TAB: BERATUNGSFÜHRUNG ═══ -->
+<div id="beratung" class="tab-panel">
+  <div class="sh"><h2>Beratungsführung</h2><span class="badge navy">Türöffner-Strategie</span></div>
+
+  <div class="card gold-left">
+    <div style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px;">Der Beratungsweg – 5 Schritte</div>
+    <div class="flow">
+      <div class="fs"><div class="fn">1</div><div class="ft">Förderanalyse kostenlos &amp; unverbindlich</div></div>
+      <div class="fs"><div class="fn">2</div><div class="ft">Strategie &amp; Garantievariante wählen</div></div>
+      <div class="fs"><div class="fn">3</div><div class="ft">Depot einrichten, Zulage sichern</div></div>
+      <div class="fs"><div class="fn">4</div><div class="ft">Versorgungslücke aufzeigen</div></div>
+      <div class="fs"><div class="fn">5</div><div class="ft">bAV, bKV &amp; private Vorsorge</div></div>
+    </div>
+    <div class="hinweis teal">Schritt 1–3 ist der kostenlose Türöffner. Der Kunde erlebt echte Kompetenz ohne Kaufdruck. Schritt 4–5 ist unser Kerngeschäft – der Übergang entsteht organisch, wenn der Kunde erkennt: 1.800 € Jahresbeitrag decken seinen Bedarf nicht annähernd ab.</div>
+  </div>
+
+  <hr class="div">
+  <div class="sh"><span style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">Zielgruppen &amp; Einstiegsargumente</span></div>
+  <div class="g2">
+    <div class="zg">
+      <div class="zg-title">Familie mit Kindern</div>
+      <div class="zg-desc">300 € Kinderzulage pro Kind und Jahr. Bei 2 Kindern und 75 €/Monat trägt der Staat bis zu 45 % der Gesamteinzahlung. Das ist das stärkste Argument – zeigen, nicht erklären.</div>
+      <span class="pill g">Strategie: Wachstum</span>&nbsp;<span class="pill a">Garantie: 80 % oder ohne</span>
+    </div>
+    <div class="zg">
+      <div class="zg-title">Selbstständige</div>
+      <div class="zg-desc">Erstmals Zugang zu geförderter Altersvorsorge. Kein Arbeitgeber, kein Riester bisher. Kombiniert sich ideal mit privater Altersvorsorge und Einkommenssicherung als Gesamtpaket.</div>
+      <span class="pill g">Strategie: Dynamisch</span>&nbsp;<span class="pill a">Garantie: ohne</span>
+    </div>
+    <div class="zg">
+      <div class="zg-title">Berufseinsteiger / U35</div>
+      <div class="zg-desc">Langer Anlagehorizont, maximaler Zinseszinseffekt auf Zulagen. Frühstartrente angekündigt. Einstieg: Zinseszinsrechnung über 35+ Jahre zeigt beeindruckende Ablaufwerte.</div>
+      <span class="pill g">Strategie: Dynamisch</span>&nbsp;<span class="pill g">Garantie: ohne</span>
+    </div>
+    <div class="zg">
+      <div class="zg-title">Angestellte mit bAV-Lücke</div>
+      <div class="zg-desc">Neue Vorsorge als Ergänzung zu bestehender bAV. Bewusstsein schaffen: 1.800 € Jahresbeitrag + bAV = noch immer keine vollständige Versorgung. Versorgungslückenrechnung als Einstieg.</div>
+      <span class="pill a">Strategie: Ausgewogen</span>&nbsp;<span class="pill a">Garantie: 80 %</span>
+    </div>
+  </div>
+
+  <hr class="div">
+  <div class="sh"><span style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);">Eröffnungssatz für den Erstkontakt</span></div>
+  <div class="card navy-left" style="background:var(--navy);border-color:var(--navy2);">
+    <div style="font-size:1rem;font-style:italic;color:var(--gold2);line-height:1.7;font-weight:500;">
+      „Sie haben sicher von der neuen staatlichen Altersvorsorge gehört, die ab Januar 2027 gilt. Ich würde gerne kostenlos für Sie durchrechnen, welche Variante zu Ihrer Situation passt und wie viel Förderung Sie sich holen können – das dauert 20 Minuten und ist völlig unverbindlich."
+    </div>
+    <div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:10px;font-weight:600;">Türöffner-Satz · Kein Commitment · Maximale Conversion</div>
+  </div>
+
+  <div class="cta-row">
+    <button class="btn-p" onclick="window.print()">Drucken / PDF</button>
+    <button class="btn-gold" onclick="showTab('rechner',document.querySelector('nav button'))">Förderrechner öffnen</button>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<footer>
+  &copy; 2026 &nbsp;<span>von Buddenbrock Concepts GmbH · Ihr Privates Finanzhaus</span>&nbsp; · Essen &nbsp;·&nbsp; Nur für interne Verwendung &nbsp;·&nbsp; Vertraulich
+</footer>
+
+<script>
+var stufe=1.0, strat=1, gVar=1;
+var rates=[.035,.055,.07,.085];
+var gCost=[0,.03,.08];
+var gNotes=[
+  "Ohne Garantie: Volle Investitionsquote – die Vermögensverwaltung arbeitet auf dem gesamten Kapital. Für Laufzeiten ab 15 Jahren und renditeorien. Kunden empfohlen.",
+  "80 %-Garantie: Hohe Investitionsquote mit solider Absicherung. Bester Kompromiss zwischen Rendite und Sicherheitsbedarf – Empfehlung für die breite Zielgruppe.",
+  "100 %-Garantie: Alle Einzahlungen garantiert. Renditepotenzial durch Absicherungskosten eingeschränkt. Nur bei ausgeprägt sicherheitsorientiertem Kundenprofil."
+];
+
+function showTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('nav button').forEach(function(b){b.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  else document.querySelector('nav button[onclick*="'+id+'"]').classList.add('active');
+}
+
+function setStufe(v,btn){
+  stufe=v;
+  document.querySelectorAll('.sbtn').forEach(function(b){b.classList.remove('active');});
+  if(btn) btn.classList.add('active');
+  document.getElementById('stufe-input').value=Math.round(v*100);
+  calc(); calcProv();
+}
+function setStufeCustom(v){
+  var pct=parseFloat(v);
+  if(isNaN(pct)||pct<1) return;
+  stufe=pct/100;
+  document.querySelectorAll('.sbtn').forEach(function(b){b.classList.remove('active');});
+  calc(); calcProv();
+}
+
+function selStrat(el){
+  document.querySelectorAll('.strat').forEach(function(s){s.classList.remove('on');});
+  el.classList.add('on');
+  strat=parseInt(el.dataset.i);
+  calc(); calcProv();
+}
+function selG(el){
+  document.querySelectorAll('.gt').forEach(function(g){g.classList.remove('on');});
+  el.classList.add('on');
+  gVar=parseInt(el.dataset.g);
+  document.getElementById('gNote').textContent=gNotes[gVar];
+  calc(); calcProv();
+}
+
+function foerder(m,k){
+  var j=m*12;
+  var z=j<=360?Math.round(j*0.5):180+Math.round((j-360)*0.25);
+  z+=k*300;
+  return z;
+}
+function fmt(n){return n.toLocaleString('de-DE');}
+
+function calc(){
+  var m=parseInt(document.getElementById('sb').value);
+  var k=parseInt(document.getElementById('kb').value);
+  var j=parseInt(document.getElementById('lb').value);
+  document.getElementById('so').textContent=m+' €';
+  document.getElementById('ko').textContent=k;
+  document.getElementById('lo').textContent=j+' Jahre';
+  var ej=m*12;
+  var z=foerder(m,k);
+  var gj=ej+z;
+  var effR=rates[strat]*(1-gCost[gVar]);
+  var kap=Math.round(gj*(((1+effR)**j-1)/effR));
+  var einlage=gj*j;
+  var zins=kap-einlage;
+  var pct=Math.round(z/gj*100);
+  document.getElementById('m1').textContent=fmt(ej)+' €';
+  document.getElementById('m2').textContent=fmt(z)+' €';
+  document.getElementById('m3').textContent=fmt(gj)+' €';
+  document.getElementById('m4').textContent=pct+' %';
+  document.getElementById('m5').textContent=fmt(kap)+' €';
+  document.getElementById('m6').textContent=fmt(Math.max(0,zins))+' €';
+  document.getElementById('barFg').style.width=(100-pct)+'%';
+  document.getElementById('barPct').textContent='Staatliche Förderung: '+pct+' %';
+  var kTxt=k>0?'Bei '+k+' Kind'+(k>1?'ern':'')+' und '+m+' €/Monat trägt der Staat '+pct+' % der Gesamteinzahlung. ':'';
+  var vvTxt=gVar===0?'Volle Investitionsquote – die Vermögensverwaltung arbeitet auf dem gesamten Kapital.':gVar===1?'80 %-Garantie: hohe Investitionsquote mit solider Absicherung.':'100 %-Garantie: alle Einzahlungen gesichert, Renditepotenzial eingeschränkt.';
+  document.getElementById('calcNote').textContent=kTxt+vvTxt+' Geschätztes Ablaufkapital nach '+j+' Jahren: '+fmt(kap)+' €.';
+  // update provision formula
+  calcProv();
+}
+
+function calcProv(){
+  var m=parseInt(document.getElementById('sb').value);
+  var k=parseInt(document.getElementById('kb').value);
+  var pb=parseFloat(document.getElementById('pb').value)/100;
+  document.getElementById('pbOut').textContent=(pb*100).toFixed(1)+' %';
+  var ej=m*12;
+  var z=foerder(m,k);
+  var gj=ej+z;
+  var ap=Math.round(gj*pb);
+  var meinAP=Math.round(ap*stufe);
+  document.getElementById('fProvBasis').textContent=(pb*100).toFixed(1)+' %';
+  document.getElementById('fJahres').textContent=fmt(gj)+' €';
+  document.getElementById('fAP').textContent=fmt(ap)+' €';
+  document.getElementById('fMeinAP').textContent=fmt(meinAP)+' €';
+  document.getElementById('fStufe').textContent=Math.round(stufe*100)+' %';
+  document.getElementById('thStufe').textContent='Ihre Provision ('+Math.round(stufe*100)+' %)';
+  // rebuild table
+  var beitraege=[10,25,50,75,100,150];
+  var kk=k;
+  var rows='';
+  beitraege.forEach(function(bm){
+    var bj=bm*12;
+    var bz=foerder(bm,kk);
+    var bg=bj+bz;
+    var bap=Math.round(bg*pb);
+    var bmein=Math.round(bap*stufe);
+    var hl=bm===m?'style="background:#e8f8f2;font-weight:800;"':'';
+    rows+='<tr '+hl+'><td>'+bm+' €</td><td>'+fmt(bj)+' €</td><td>'+fmt(bz)+' €</td><td>'+fmt(bg)+' €</td><td>'+fmt(bap)+' €</td><td><span class="prov-val-edit">'+fmt(bmein)+' €</span></td></tr>';
+  });
+  document.getElementById('provBody').innerHTML=rows;
+}
+
+document.getElementById('gNote').textContent=gNotes[1];
+calc();
+</script>
+</body>
+</html>
